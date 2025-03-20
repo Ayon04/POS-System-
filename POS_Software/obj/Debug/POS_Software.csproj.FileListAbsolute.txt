@@ -32,3 +32,4 @@ C:\.NET\POS_Software\POS_Software\bin\Debug\System.Text.Json.xml
 C:\.NET\POS_Software\POS_Software\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\.NET\POS_Software\POS_Software\bin\Debug\System.ValueTuple.xml
 C:\.NET\POS_Software\POS_Software\obj\Debug\POS_Software.csproj.CopyComplete
+C:\.NET\POS_Software\POS_Software\obj\Debug\POS_Software.Cashier_login.resources

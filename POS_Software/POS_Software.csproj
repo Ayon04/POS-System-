@@ -83,6 +83,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cashier_login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cashier_login.Designer.cs">
+      <DependentUpon>Cashier_login.cs</DependentUpon>
+    </Compile>
     <Compile Include="OracleDataAccess.cs" />
     <Compile Include="POS_Dashboard.cs">
       <SubType>Form</SubType>
@@ -92,6 +98,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Cashier_login.resx">
+      <DependentUpon>Cashier_login.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="POS_Dashboard.resx">
       <DependentUpon>POS_Dashboard.cs</DependentUpon>
     </EmbeddedResource>
