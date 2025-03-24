@@ -16,7 +16,8 @@ namespace POS_Software
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new POS_Dashboard());
+            //Application.Run(new POS_Dashboard());
+            Application.Run(new Cashier_login());
         }
     }
 }

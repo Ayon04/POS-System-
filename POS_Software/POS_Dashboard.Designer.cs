@@ -28,9 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(POS_Dashboard));
             this.panel1 = new System.Windows.Forms.Panel();
             this.label17 = new System.Windows.Forms.Label();
             this.bill = new System.Windows.Forms.Button();
@@ -71,17 +77,22 @@
             this.productID = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.dcxzc = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.print = new System.Windows.Forms.Button();
-            this.resetPrint = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.search_inv = new System.Windows.Forms.Button();
+            this.search_invoice = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.searchPro = new System.Windows.Forms.TextBox();
             this.search = new System.Windows.Forms.Button();
             this.sales_view = new System.Windows.Forms.DataGridView();
+            this.sales_view_2 = new System.Windows.Forms.DataGridView();
+            this.printDialog1 = new System.Windows.Forms.PrintDialog();
+            this.printDocument2 = new System.Drawing.Printing.PrintDocument();
+            this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sales_view)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sales_view_2)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -128,7 +139,7 @@
             this.panel1.Controls.Add(this.dcxzc);
             this.panel1.Location = new System.Drawing.Point(1, 1);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(335, 573);
+            this.panel1.Size = new System.Drawing.Size(385, 573);
             this.panel1.TabIndex = 1;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -145,7 +156,7 @@
             // 
             // bill
             // 
-            this.bill.BackColor = System.Drawing.Color.Violet;
+            this.bill.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.bill.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bill.Location = new System.Drawing.Point(249, 517);
             this.bill.Name = "bill";
@@ -153,17 +164,19 @@
             this.bill.TabIndex = 44;
             this.bill.Text = "Bill";
             this.bill.UseVisualStyleBackColor = false;
+            this.bill.Click += new System.EventHandler(this.bill_Click);
             // 
             // dateTime
             // 
             this.dateTime.AllowDrop = true;
+            this.dateTime.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTime.CalendarMonthBackground = System.Drawing.Color.YellowGreen;
             this.dateTime.CustomFormat = "dd-MM-yyyy";
             this.dateTime.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
-            this.dateTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTime.Location = new System.Drawing.Point(126, 430);
             this.dateTime.Name = "dateTime";
-            this.dateTime.Size = new System.Drawing.Size(195, 18);
+            this.dateTime.Size = new System.Drawing.Size(224, 20);
             this.dateTime.TabIndex = 43;
             // 
             // paymentMethoad
@@ -175,7 +188,7 @@
             "Online Payment"});
             this.paymentMethoad.Location = new System.Drawing.Point(126, 272);
             this.paymentMethoad.Name = "paymentMethoad";
-            this.paymentMethoad.Size = new System.Drawing.Size(198, 24);
+            this.paymentMethoad.Size = new System.Drawing.Size(224, 24);
             this.paymentMethoad.TabIndex = 42;
             this.paymentMethoad.SelectedIndexChanged += new System.EventHandler(this.paymentMethoad_SelectedIndexChanged);
             // 
@@ -225,14 +238,16 @@
             // 
             // update
             // 
-            this.update.BackColor = System.Drawing.Color.DarkOrange;
+            this.update.BackColor = System.Drawing.Color.Yellow;
             this.update.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.update.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
             this.update.Location = new System.Drawing.Point(6, 481);
             this.update.Name = "update";
             this.update.Size = new System.Drawing.Size(75, 30);
             this.update.TabIndex = 1;
             this.update.Text = "Update";
             this.update.UseVisualStyleBackColor = false;
+            this.update.Click += new System.EventHandler(this.update_Click);
             // 
             // insert
             // 
@@ -259,7 +274,7 @@
             // 
             // delete
             // 
-            this.delete.BackColor = System.Drawing.Color.Red;
+            this.delete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.delete.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.delete.Location = new System.Drawing.Point(164, 481);
             this.delete.Name = "delete";
@@ -267,6 +282,7 @@
             this.delete.TabIndex = 3;
             this.delete.Text = "Delete";
             this.delete.UseVisualStyleBackColor = false;
+            this.delete.Click += new System.EventHandler(this.delete_Click);
             // 
             // label4
             // 
@@ -281,7 +297,7 @@
             // 
             // clear
             // 
-            this.clear.BackColor = System.Drawing.Color.MediumSlateBlue;
+            this.clear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.clear.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.clear.Location = new System.Drawing.Point(245, 481);
             this.clear.Name = "clear";
@@ -304,7 +320,7 @@
             // 
             // load
             // 
-            this.load.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.load.BackColor = System.Drawing.SystemColors.Info;
             this.load.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.load.Location = new System.Drawing.Point(6, 517);
             this.load.Name = "load";
@@ -327,7 +343,7 @@
             // 
             // exit
             // 
-            this.exit.BackColor = System.Drawing.Color.DeepPink;
+            this.exit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.exit.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.exit.Location = new System.Drawing.Point(87, 517);
             this.exit.Name = "exit";
@@ -335,6 +351,7 @@
             this.exit.TabIndex = 6;
             this.exit.Text = "Exit";
             this.exit.UseVisualStyleBackColor = false;
+            this.exit.Click += new System.EventHandler(this.exit_Click);
             // 
             // label10
             // 
@@ -357,6 +374,7 @@
             this.reset.TabIndex = 8;
             this.reset.Text = "Reset";
             this.reset.UseVisualStyleBackColor = false;
+            this.reset.Click += new System.EventHandler(this.reset_Click);
             // 
             // label9
             // 
@@ -417,7 +435,7 @@
             this.username.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.username.Location = new System.Drawing.Point(126, 401);
             this.username.Name = "username";
-            this.username.Size = new System.Drawing.Size(195, 22);
+            this.username.Size = new System.Drawing.Size(224, 22);
             this.username.TabIndex = 25;
             // 
             // cashierID
@@ -425,7 +443,7 @@
             this.cashierID.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cashierID.Location = new System.Drawing.Point(126, 369);
             this.cashierID.Name = "cashierID";
-            this.cashierID.Size = new System.Drawing.Size(195, 22);
+            this.cashierID.Size = new System.Drawing.Size(224, 22);
             this.cashierID.TabIndex = 24;
             // 
             // cashChng
@@ -433,7 +451,7 @@
             this.cashChng.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cashChng.Location = new System.Drawing.Point(126, 337);
             this.cashChng.Name = "cashChng";
-            this.cashChng.Size = new System.Drawing.Size(195, 22);
+            this.cashChng.Size = new System.Drawing.Size(224, 22);
             this.cashChng.TabIndex = 23;
             // 
             // cashRecv
@@ -441,7 +459,7 @@
             this.cashRecv.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cashRecv.Location = new System.Drawing.Point(126, 305);
             this.cashRecv.Name = "cashRecv";
-            this.cashRecv.Size = new System.Drawing.Size(195, 22);
+            this.cashRecv.Size = new System.Drawing.Size(224, 22);
             this.cashRecv.TabIndex = 22;
             // 
             // netTotal
@@ -449,7 +467,7 @@
             this.netTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.netTotal.Location = new System.Drawing.Point(126, 240);
             this.netTotal.Name = "netTotal";
-            this.netTotal.Size = new System.Drawing.Size(198, 22);
+            this.netTotal.Size = new System.Drawing.Size(224, 22);
             this.netTotal.TabIndex = 20;
             // 
             // discount
@@ -457,7 +475,7 @@
             this.discount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.discount.Location = new System.Drawing.Point(126, 208);
             this.discount.Name = "discount";
-            this.discount.Size = new System.Drawing.Size(198, 22);
+            this.discount.Size = new System.Drawing.Size(224, 22);
             this.discount.TabIndex = 19;
             // 
             // totalAmount
@@ -465,7 +483,7 @@
             this.totalAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.totalAmount.Location = new System.Drawing.Point(126, 176);
             this.totalAmount.Name = "totalAmount";
-            this.totalAmount.Size = new System.Drawing.Size(198, 22);
+            this.totalAmount.Size = new System.Drawing.Size(224, 22);
             this.totalAmount.TabIndex = 18;
             // 
             // phoneNo
@@ -473,7 +491,7 @@
             this.phoneNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.phoneNo.Location = new System.Drawing.Point(126, 144);
             this.phoneNo.Name = "phoneNo";
-            this.phoneNo.Size = new System.Drawing.Size(198, 22);
+            this.phoneNo.Size = new System.Drawing.Size(224, 22);
             this.phoneNo.TabIndex = 17;
             // 
             // quantity
@@ -481,7 +499,7 @@
             this.quantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.quantity.Location = new System.Drawing.Point(126, 112);
             this.quantity.Name = "quantity";
-            this.quantity.Size = new System.Drawing.Size(198, 22);
+            this.quantity.Size = new System.Drawing.Size(224, 22);
             this.quantity.TabIndex = 16;
             // 
             // price
@@ -489,7 +507,7 @@
             this.price.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.price.Location = new System.Drawing.Point(126, 80);
             this.price.Name = "price";
-            this.price.Size = new System.Drawing.Size(198, 22);
+            this.price.Size = new System.Drawing.Size(224, 22);
             this.price.TabIndex = 15;
             // 
             // productName
@@ -497,7 +515,7 @@
             this.productName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.productName.Location = new System.Drawing.Point(126, 48);
             this.productName.Name = "productName";
-            this.productName.Size = new System.Drawing.Size(198, 22);
+            this.productName.Size = new System.Drawing.Size(224, 22);
             this.productName.TabIndex = 14;
             // 
             // productID
@@ -505,7 +523,7 @@
             this.productID.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.productID.Location = new System.Drawing.Point(126, 16);
             this.productID.Name = "productID";
-            this.productID.Size = new System.Drawing.Size(198, 22);
+            this.productID.Size = new System.Drawing.Size(224, 22);
             this.productID.TabIndex = 13;
             // 
             // label2
@@ -528,51 +546,57 @@
             this.dcxzc.Text = "Product ID ";
             this.dcxzc.Click += new System.EventHandler(this.label1_Click);
             // 
-            // panel2
-            // 
-            this.panel2.Location = new System.Drawing.Point(936, 20);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(296, 518);
-            this.panel2.TabIndex = 2;
-            // 
-            // print
-            // 
-            this.print.BackColor = System.Drawing.Color.Yellow;
-            this.print.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.print.Location = new System.Drawing.Point(936, 544);
-            this.print.Name = "print";
-            this.print.Size = new System.Drawing.Size(138, 35);
-            this.print.TabIndex = 3;
-            this.print.Text = "Print";
-            this.print.UseVisualStyleBackColor = false;
-            // 
-            // resetPrint
-            // 
-            this.resetPrint.BackColor = System.Drawing.Color.Red;
-            this.resetPrint.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resetPrint.Location = new System.Drawing.Point(1080, 544);
-            this.resetPrint.Name = "resetPrint";
-            this.resetPrint.Size = new System.Drawing.Size(138, 36);
-            this.resetPrint.TabIndex = 9;
-            this.resetPrint.Text = "Reset";
-            this.resetPrint.UseVisualStyleBackColor = false;
-            // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.Cyan;
+            this.panel3.Controls.Add(this.search_inv);
+            this.panel3.Controls.Add(this.search_invoice);
+            this.panel3.Controls.Add(this.label18);
             this.panel3.Controls.Add(this.label16);
             this.panel3.Controls.Add(this.searchPro);
             this.panel3.Controls.Add(this.search);
-            this.panel3.Location = new System.Drawing.Point(344, 10);
+            this.panel3.Location = new System.Drawing.Point(392, 7);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(574, 26);
+            this.panel3.Size = new System.Drawing.Size(795, 27);
             this.panel3.TabIndex = 10;
+            this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
+            // 
+            // search_inv
+            // 
+            this.search_inv.BackColor = System.Drawing.Color.OldLace;
+            this.search_inv.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.search_inv.Location = new System.Drawing.Point(666, 3);
+            this.search_inv.Name = "search_inv";
+            this.search_inv.Size = new System.Drawing.Size(117, 22);
+            this.search_inv.TabIndex = 16;
+            this.search_inv.Text = "Search";
+            this.search_inv.UseVisualStyleBackColor = false;
+            this.search_inv.Click += new System.EventHandler(this.search_inv_Click);
+            // 
+            // search_invoice
+            // 
+            this.search_invoice.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.search_invoice.Location = new System.Drawing.Point(467, 2);
+            this.search_invoice.Name = "search_invoice";
+            this.search_invoice.Size = new System.Drawing.Size(188, 24);
+            this.search_invoice.TabIndex = 15;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.ForeColor = System.Drawing.Color.Black;
+            this.label18.Location = new System.Drawing.Point(400, 5);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(66, 18);
+            this.label18.TabIndex = 14;
+            this.label18.Text = "Invoice ";
             // 
             // label16
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.ForeColor = System.Drawing.Color.DarkOrchid;
+            this.label16.ForeColor = System.Drawing.Color.Black;
             this.label16.Location = new System.Drawing.Point(2, 4);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(78, 15);
@@ -582,18 +606,18 @@
             // searchPro
             // 
             this.searchPro.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.searchPro.Location = new System.Drawing.Point(83, 1);
+            this.searchPro.Location = new System.Drawing.Point(86, 1);
             this.searchPro.Name = "searchPro";
-            this.searchPro.Size = new System.Drawing.Size(265, 24);
+            this.searchPro.Size = new System.Drawing.Size(168, 24);
             this.searchPro.TabIndex = 11;
             // 
             // search
             // 
-            this.search.BackColor = System.Drawing.Color.Silver;
+            this.search.BackColor = System.Drawing.Color.PapayaWhip;
             this.search.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.search.Location = new System.Drawing.Point(374, 2);
+            this.search.Location = new System.Drawing.Point(261, 2);
             this.search.Name = "search";
-            this.search.Size = new System.Drawing.Size(155, 22);
+            this.search.Size = new System.Drawing.Size(117, 22);
             this.search.TabIndex = 12;
             this.search.Text = "Search";
             this.search.UseVisualStyleBackColor = false;
@@ -603,45 +627,114 @@
             // 
             this.sales_view.AllowUserToAddRows = false;
             this.sales_view.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
-            this.sales_view.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
+            this.sales_view.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle25;
+            this.sales_view.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.sales_view.BackgroundColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle26.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle26.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle26.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle26.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle26.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle26.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.sales_view.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle26;
             this.sales_view.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sales_view.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.sales_view.Location = new System.Drawing.Point(346, 40);
+            this.sales_view.Location = new System.Drawing.Point(392, 40);
             this.sales_view.Name = "sales_view";
             this.sales_view.ReadOnly = true;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.sales_view.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.sales_view.RowHeadersWidth = 80;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            this.sales_view.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle27.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle27.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle27.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle27.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle27.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle27.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.sales_view.RowHeadersDefaultCellStyle = dataGridViewCellStyle27;
+            this.sales_view.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            dataGridViewCellStyle28.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle28.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle28.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle28.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle28.SelectionForeColor = System.Drawing.Color.Black;
+            this.sales_view.RowsDefaultCellStyle = dataGridViewCellStyle28;
             this.sales_view.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.sales_view.Size = new System.Drawing.Size(572, 534);
+            this.sales_view.Size = new System.Drawing.Size(795, 202);
             this.sales_view.TabIndex = 11;
             this.sales_view.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.sales_view_CellContentClick_2);
+            // 
+            // sales_view_2
+            // 
+            this.sales_view_2.AllowUserToAddRows = false;
+            this.sales_view_2.AllowUserToDeleteRows = false;
+            this.sales_view_2.BackgroundColor = System.Drawing.SystemColors.ActiveBorder;
+            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle29.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle29.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle29.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle29.SelectionBackColor = System.Drawing.Color.PaleGreen;
+            dataGridViewCellStyle29.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle29.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.sales_view_2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle29;
+            this.sales_view_2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle30.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle30.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle30.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle30.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle30.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle30.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.sales_view_2.DefaultCellStyle = dataGridViewCellStyle30;
+            this.sales_view_2.Location = new System.Drawing.Point(393, 259);
+            this.sales_view_2.Name = "sales_view_2";
+            this.sales_view_2.ReadOnly = true;
+            dataGridViewCellStyle31.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle31.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle31.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle31.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle31.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle31.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle31.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.sales_view_2.RowHeadersDefaultCellStyle = dataGridViewCellStyle31;
+            dataGridViewCellStyle32.SelectionBackColor = System.Drawing.Color.PaleTurquoise;
+            dataGridViewCellStyle32.SelectionForeColor = System.Drawing.Color.Black;
+            this.sales_view_2.RowsDefaultCellStyle = dataGridViewCellStyle32;
+            this.sales_view_2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.sales_view_2.Size = new System.Drawing.Size(794, 315);
+            this.sales_view_2.TabIndex = 12;
+            this.sales_view_2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.sales_view_2_CellContentClick);
+            // 
+            // printDialog1
+            // 
+            this.printDialog1.UseEXDialog = true;
+            // 
+            // printDocument2
+            // 
+            this.printDocument2.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument2_PrintPage);
+            // 
+            // printPreviewDialog1
+            // 
+            this.printPreviewDialog1.AutoScrollMargin = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.ClientSize = new System.Drawing.Size(400, 300);
+            this.printPreviewDialog1.Enabled = true;
+            this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
+            this.printPreviewDialog1.Name = "printPreviewDialog1";
+            this.printPreviewDialog1.Visible = false;
+            this.printPreviewDialog1.Load += new System.EventHandler(this.printPreviewDialog1_Load);
             // 
             // POS_Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.ClientSize = new System.Drawing.Size(1258, 581);
+            this.ClientSize = new System.Drawing.Size(1199, 581);
+            this.Controls.Add(this.sales_view_2);
             this.Controls.Add(this.sales_view);
             this.Controls.Add(this.panel3);
-            this.Controls.Add(this.resetPrint);
-            this.Controls.Add(this.print);
-            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
             this.Name = "POS_Dashboard";
             this.Text = "POS_Dashboard";
             this.panel1.ResumeLayout(false);
@@ -649,19 +742,18 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sales_view)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sales_view_2)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label dcxzc;
         private System.Windows.Forms.Button clear;
         private System.Windows.Forms.Button delete;
         private System.Windows.Forms.Button insert;
         private System.Windows.Forms.Button update;
-        private System.Windows.Forms.Button print;
         private System.Windows.Forms.Button load;
         private System.Windows.Forms.Button exit;
         private System.Windows.Forms.Button reset;
@@ -695,13 +787,19 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Button bill;
-        private System.Windows.Forms.Button resetPrint;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox searchPro;
         private System.Windows.Forms.Button search;
         private System.Windows.Forms.DataGridView sales_view;
         private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.DataGridView sales_view_2;
+        private System.Windows.Forms.TextBox search_invoice;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Button search_inv;
+        private System.Windows.Forms.PrintDialog printDialog1;
+        private System.Drawing.Printing.PrintDocument printDocument2;
+        private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
     }
 }
 
