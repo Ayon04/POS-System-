@@ -11,9 +11,6 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing.Printing;
-using System.Drawing;
-using System.Drawing.Printing;
-using System.Windows.Forms;
 
 
 namespace POS_Software
@@ -35,7 +32,7 @@ namespace POS_Software
             db = new OracleDataAccess();
             LoadProductsData();
             SetReadOnlyFields();
-            printDocument1.PrintPage += new PrintPageEventHandler(PrintReceipt);
+            printDocument2.PrintPage += new PrintPageEventHandler(PrintReceipt); // Ensure this is assigned
 
 
             // string Username = username.Text;
@@ -446,6 +443,7 @@ namespace POS_Software
                 cashChng.Text = row.Cells["CashChange"].Value?.ToString() ?? "";
                 cashierID.Text = row.Cells["CashierID"].Value?.ToString() ?? "";
                 username.Text = row.Cells["Username"].Value?.ToString() ?? "";
+                inv.Text = row.Cells["InvoiceNumber"].Value?.ToString() ?? "";
 
                 cashRecv.ReadOnly = true;
                 quantity.ReadOnly = true;
@@ -575,10 +573,10 @@ namespace POS_Software
             int startY = 20;
             int offset = 40;
 
-            g.DrawString("POS Billing System", new Font("Arial", 14, FontStyle.Bold), Brushes.Black, startX, startY);
+            g.DrawString("", new Font("Arial", 14, FontStyle.Bold), Brushes.Black, startX, startY);
             g.DrawString("=======================================", font, Brushes.Black, startX, startY + 20);
 
-            g.DrawString($"Invoice No: {invoiceNumber}", font, Brushes.Black, startX, startY + offset);
+            g.DrawString($"Invoice No: {inv.Text}", font, Brushes.Black, startX, startY + offset);
             offset += 20;
             g.DrawString($"Cashier: {username.Text}", font, Brushes.Black, startX, startY + offset);
             offset += 20;
@@ -590,14 +588,17 @@ namespace POS_Software
             g.DrawString("---------------------------------------", font, Brushes.Black, startX, startY + offset);
             offset += 20;
 
-            // Print product details
-            string prodName = productName.Text;
-            int qty = Convert.ToInt32(quantity.Text);
-            decimal price = Convert.ToDecimal(this.price.Text);
-            decimal total = qty * price;
+            // Ensure input fields are not null or empty
+            if (!string.IsNullOrEmpty(productName.Text) && !string.IsNullOrEmpty(quantity.Text) && !string.IsNullOrEmpty(price.Text))
+            {
+                string prodName = productName.Text;
+                int qty = Convert.ToInt32(quantity.Text);
+                decimal priceValue = Convert.ToDecimal(price.Text);
+                decimal total = qty * priceValue;
 
-            g.DrawString($"{prodName}   {qty}   {price}   {total}", font, Brushes.Black, startX, startY + offset);
-            offset += 30;
+                g.DrawString($"{prodName}   {qty}   {priceValue}   {total}", font, Brushes.Black, startX, startY + offset);
+                offset += 30;
+            }
 
             g.DrawString("---------------------------------------", font, Brushes.Black, startX, startY + offset);
             offset += 20;
@@ -614,16 +615,24 @@ namespace POS_Software
 
             g.DrawString("Thank you for shopping with us!", font, Brushes.Black, startX, startY + offset);
         }
+
         private void bill_Click(object sender, EventArgs e)
         {
-           // printPreviewDialog1.Document = printDocument2;
-           // printPreviewDialog1.ShowDialog();
+            // printPreviewDialog1.Document = printDocument2;
+            // printPreviewDialog1.ShowDialog();
 
-            printDialog.Document = printDocument;
-            if (printDialog.ShowDialog() == DialogResult.OK)
-            {
-                printDocument.Print();
-            }
+            //printPreviewDialog1.Document = printDocument2;
+            //printPreviewDialog1.ShowDialog();
+
+            // Print after preview
+            // printDialog.Document = printDocument2;
+            ///if (printDialog.ShowDialog() == DialogResult.OK)
+            //  {
+            //printDocument2.Print();
+            //}
+            printPreviewDialog1.Document = printDocument2;
+            printPreviewDialog1.ShowDialog();
+
         }
 
         private void printDocument2_PrintPage(object sender, PrintPageEventArgs e)//000000
